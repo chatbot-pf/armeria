@@ -47,6 +47,7 @@ import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.ImmutableMap;
 
 import com.linecorp.armeria.common.AggregatedHttpRequest;
@@ -107,6 +108,7 @@ final class WebOperationService implements HttpService {
             healthComponentClass = null;
             getStatusMethodHandle = null;
         }
+        OBJECT_MAPPER.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     }
 
     private final WebOperation operation;
